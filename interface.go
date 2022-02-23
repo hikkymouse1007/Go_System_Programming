@@ -1,0 +1,26 @@
+package main
+
+import (
+	"fmt"
+)
+
+// インタフェースを定義
+type Talker interface {
+	Talk()
+}
+
+// 構造体を宣
+type Greeter struct {
+	name string
+}
+
+// 構造体はTalker インタフェースで定義されているメソッドを持っている
+func (g Greeter) Talk() {
+	fmt.Printf("Hello, my name is %s\n", g.name)
+}
+func main() {
+	var talker Talker
+	// インタフェースを満たす構造体のポインタは代入できる
+	talker = &Greeter{"wozozo"}
+	talker.Talk()
+}

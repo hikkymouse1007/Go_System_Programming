@@ -15,3 +15,5 @@ git init
 git remote add origin https://github.com/hikkymouse1007/Go_System_Programming.git
 go mod init　github.com/hikkymouse1007/Go_System_Programming
 ```
+
+https://qiita.com/ymmy02/items/b4b38a57c024510c5210
