@@ -9,7 +9,7 @@ type Talker interface {
 	Talk()
 }
 
-// 構造体を宣
+// 構造体を宣言
 type Greeter struct {
 	name string
 }
@@ -20,7 +20,9 @@ func (g Greeter) Talk() {
 }
 func main() {
 	var talker Talker
+
 	// インタフェースを満たす構造体のポインタは代入できる
+	// 初期化パラメータを与えて Greeter型の構造体のインスタンスを作成し、そのポインタを代入
 	talker = &Greeter{"wozozo"}
 	talker.Talk()
 }
