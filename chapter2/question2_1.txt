@@ -1,0 +1,2 @@
+This is a 1st question answered at 2022-04-27 00:36:21.117235 +0900 JST m=+0.000229249
+Your favorite decimal number is 1.223500
