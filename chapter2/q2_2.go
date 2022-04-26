@@ -2,32 +2,44 @@ package main
 
 import (
 	"encoding/csv"
-	"log"
 	"os"
 )
 
 func main() {
-	records := [][]string{
-		{"first_name", "last_name", "username"},
-		{"Rob", "Pike", "rob"},
-		{"Ken", "Thompson", "ken"},
-		{"Robert", "Griesemer", "gri"},
+	// gzipのパターンを真似して作ってみる
+	file, err := os.Create("test.csv")
+	if err != nil {
+		panic((err))
 	}
 
-	w := csv.NewWriter(os.Stdout)
+	writer := csv.NewWriter(file)
+	writer.Write([]string{"FirstName, LastNAme"}) //GoのSlice宣言
+	writer.Flush()
+	writer.Write([]string{"Hiroki, Mashimo"})
+	writer.Flush()
 
-	for _, record := range records {
-		if err := w.Write(record); err != nil {
-			log.Fatalln("error writing record to csv:", err)
-		}
-	}
+	// godocのサンプル
+	// records := [][]string{
+	// 	{"first_name", "last_name", "username"},
+	// 	{"Rob", "Pike", "rob"},
+	// 	{"Ken", "Thompson", "ken"},
+	// 	{"Robert", "Griesemer", "gri"},
+	// }
 
-	// Write any buffered data to the underlying writer (standard output).
-	w.Flush()
+	// w := csv.NewWriter(os.Stdout)
 
-	if err := w.Error(); err != nil {
-		log.Fatal(err)
-	}
+	// for _, record := range records {
+	// 	if err := w.Write(record); err != nil {
+	// 		log.Fatalln("error writing record to csv:", err)
+	// 	}
+	// }
+
+	// // Write any buffered data to the underlying writer (standard output).
+	// w.Flush()
+
+	// if err := w.Error(); err != nil {
+	// 	log.Fatal(err)
+	// }
 }
 
 // Output:
