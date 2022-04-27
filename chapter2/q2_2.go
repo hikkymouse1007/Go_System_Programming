@@ -18,6 +18,12 @@ func main() {
 	writer.Write([]string{"Hiroki, Mashimo"})
 	writer.Flush()
 
+	// これでまとめて書き込むこともできる模様
+	// writer.Write([]string{"abc","efg", "zyx"})
+	// writer.Write([]string{"1","2", "3"})
+	// writer.Write([]string{"A","B", "C"})
+	// writer.Flush() // ここで書き込みを実行する
+
 	// godocのサンプル
 	// records := [][]string{
 	// 	{"first_name", "last_name", "username"},

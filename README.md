@@ -2,6 +2,12 @@
 
 https://www.lambdanote.com/products/go
 
+- 解答つきの連載について
+  - https://ascii.jp/serialarticles/1235262/
+- Zenn のメモ
+  - https://zenn.dev/mohira/scraps/c0aca378ac9fa7
+  - https://zenn.dev/mohira/scraps/c0aca378ac9fa7
+
 ## デバッガのセットアップ
 
 https://qiita.com/gs1068/items/1d89d4a9bed070782298
@@ -81,3 +87,17 @@ https://zenn.dev/mkosakana/articles/bb411e9d6b5ad9
 ### 練習問題　解答参考
 
 https://github.com/yuyabu/go-sys
+
+### Q 2-3 　補足
+
+https://stackoverflow.com/questions/31622052/how-to-serve-up-a-json-response-using-go
+
+```go
+// You can set your content-type header so clients know to expect json
+
+w.Header().Set("Content-Type", "application/json")
+
+// Another way to marshal a struct to json is to build an encoder using the http.ResponseWriter
+// get a payload p := Payload{d}
+json.NewEncoder(w).Encode(p)
+```
