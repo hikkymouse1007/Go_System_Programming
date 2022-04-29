@@ -101,3 +101,132 @@ w.Header().Set("Content-Type", "application/json")
 // get a payload p := Payload{d}
 json.NewEncoder(w).Encode(p)
 ```
+
+### 3.4.1 補足
+
+バッファサイズ 5 ずつ表示する
+
+```txt
+$ go run stdin.go < stdin.go
+size=5 input='packa
+size=5 input='ge ma
+size=5 input='in
+
+i
+size=5 input='mport
+size=5 input=' (
+        "
+size=5 input='fmt"
+
+size=5 input='  "io"
+size=5 input='
+        "os
+size=5 input='"
+)
+
+
+size=5 input='func
+size=5 input='main(
+size=5 input=') {
+
+size=5 input='for {
+size=5 input='
+                bu
+size=5 input='ffer
+size=5 input=':= ma
+size=5 input='ke([]
+size=5 input='byte,
+size=5 input=' 5)
+
+size=5 input='  size
+size=5 input=', err
+size=5 input=' := o
+size=5 input='s.Std
+size=5 input='in.Re
+size=5 input='ad(bu
+size=5 input='ffer)
+size=5 input='
+                if
+size=5 input=' err
+size=5 input='== io
+size=5 input='.EOF
+size=5 input='{
+
+size=5 input='fmt.P
+size=5 input='rintl
+size=5 input='n("EO
+size=5 input='F")
+
+size=5 input='          bre
+size=5 input='ak
+
+size=5 input='}
+                f
+size=5 input='mt.Pr
+size=5 input='intf(
+size=5 input='"size
+size=5 input='=%d i
+size=5 input='nput=
+size=5 input=''%s\n
+size=5 input='", si
+size=5 input='ze, s
+size=5 input='tring
+size=5 input='(buff
+size=5 input='er))
+
+size=5 input='          //
+size=5 input='input
+size=5 input=':
+                /
+size=5 input='/ hel
+size=5 input='lo wo
+size=5 input='rld
+
+size=5 input='  // s
+size=5 input='ize=5
+size=5 input=' inpu
+size=5 input='t='he
+size=5 input='llo
+
+size=5 input='  // s
+size=5 input='ize=5
+size=5 input=' inpu
+size=5 input='t=' w
+size=5 input='orl
+
+size=5 input='  // s
+size=5 input='ize=2
+size=5 input=' inpu
+size=5 input='t='d
+
+size=5 input='  }
+}
+
+EOF
+}
+```
+
+## Go の io パッケージ解説
+
+https://christina04.hatenablog.com/entry/golang-io-package-diagrams
+
+> io.Copy は io.Reader からデータを読み込み、io.Writer へと書き出します。
+> 入力と出力をそのままセットで実行する
+
+```go
+func Copy(dst Writer, src Reader) (written int64, err error) {
+	return copyBuffer(dst, src, nil)
+}
+```
+
+### エンディアンとは
+
+https://qiita.com/tobira-code/items/a03f39a02678d80bbd26
+
+https://wa3.i-3-i.info/word11426.html
+http://tanehp.ec-net.jp/heppoko-lab/prog/zakki/byteorder/byteorder.html
+
+https://rainbow-engine.com/little-endian-big-endian/
+
+> TCP/IP プロトコルで使用されている事から、インターネット上でデータを転送する際には「ビッグエンディアン」に変換する必要があるという意味になります。
+> 逆にリトルエンディアンは、前述の計算処理における利点がある事から Intel 等のプロセッサで利用されています
