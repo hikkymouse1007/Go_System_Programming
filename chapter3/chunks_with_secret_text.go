@@ -1,8 +1,10 @@
 package main
 
 import (
+	"bytes"
 	"encoding/binary"
 	"fmt"
+	"hash/crc32"
 	"io"
 	"os"
 )
@@ -42,6 +44,19 @@ func readChunks(file *os.File) []io.Reader {
 
 }
 
+func textChunk(text string) io.Reader {
+	var buffer bytes.Buffer
+	byteData := []byte(text)
+	binary.Write(&buffer, binary.BigEndian, int32(len(byteData)))
+	buffer.WriteString("tEXt")
+	buffer.Write(byteData)
+
+	crc := crc32.NewIEEE()
+	crc.Write(byteData)
+	binary.Write(&buffer, binary.BigEndian, crc.Sum32())
+	return &buffer
+
+}
 func main() {
 	file, err := os.Open("Lenna.png")
 	if err != nil {

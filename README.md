@@ -230,3 +230,8 @@ https://rainbow-engine.com/little-endian-big-endian/
 
 > TCP/IP プロトコルで使用されている事から、インターネット上でデータを転送する際には「ビッグエンディアン」に変換する必要があるという意味になります。
 > 逆にリトルエンディアンは、前述の計算処理における利点がある事から Intel 等のプロセッサで利用されています
+
+## png のチャンク
+
+![スクリーンショット 2022-05-02 0 56 21](https://user-images.githubusercontent.com/54907440/166153977-daca9d14-6516-49a8-9e00-0791964f4c3b.png)
+![スクリーンショット 2022-05-02 0 56 28](https://user-images.githubusercontent.com/54907440/166153978-06e34678-2dd6-4856-9fe6-9a344f330013.png)
