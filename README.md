@@ -8,6 +8,10 @@ https://www.lambdanote.com/products/go
   - https://zenn.dev/mohira/scraps/c0aca378ac9fa7
   - https://zenn.dev/mohira/scraps/c0aca378ac9fa7
 
+サンプルコード
+
+- https://github.com/mikutas/go-system-programming
+
 ## デバッガのセットアップ
 
 https://qiita.com/gs1068/items/1d89d4a9bed070782298

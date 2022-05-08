@@ -15,6 +15,11 @@ func dumpChunk(chunk io.Reader) {
 	buffer := make([]byte, 4)
 	chunk.Read(buffer)
 	fmt.Printf("chunk '%v' (%d bytes)\n", string(buffer), length)
+	if bytes.Equal(buffer, []byte("tEXt")) {
+		rawText := make([]byte, length)
+		chunk.Read(rawText)
+		fmt.Println(string(rawText))
+	}
 }
 
 func readChunks(file *os.File) []io.Reader {
@@ -57,13 +62,25 @@ func textChunk(text string) io.Reader {
 	return &buffer
 
 }
+
 func main() {
 	file, err := os.Open("Lenna.png")
 	if err != nil {
 		panic(err)
 	}
 	defer file.Close()
+	newFile, err := os.Open("Lenna.png")
+	if err != nil {
+		panic(err)
+	}
+	defer newFile.Close()
 	chunks := readChunks(file)
+	io.WriteString(newFile, "\x89PNG\r\n\x1a\n")
+	io.Copy(newFile, chunks[0])
+	io.Copy(newFile, textChunk("ASCII PROGRAMING++"))
+	for _, chunk := range chunks[1:] {
+		io.Copy(newFile, chunk)
+	}
 	for _, chunk := range chunks {
 		dumpChunk(chunk)
 	}
