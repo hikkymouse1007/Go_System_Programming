@@ -1,0 +1,20 @@
+total 1992
+-rw-r--r--  1 mashimohroki  staff     265 May 10 23:42 3.6.2.go
+-rw-r--r--  1 mashimohroki  staff     990 May 14 13:28 3.6.3.go
+-rw-r--r--@ 1 mashimohroki  staff  473831 May 10 23:24 Lenna.png
+-rw-r--r--@ 1 mashimohroki  staff  473861 May 10 23:24 Lenna2.png
+-rw-r--r--  1 mashimohroki  staff     397 May 10 23:35 break_line.go
+-rw-r--r--  1 mashimohroki  staff     630 Apr 29 23:18 buffer.go
+-rw-r--r--  1 mashimohroki  staff     229 Apr 29 22:27 bufio_reader.go
+-rw-r--r--  1 mashimohroki  staff    1317 May  2 01:00 chunks.go
+-rw-r--r--  1 mashimohroki  staff    2505 May 10 23:23 chunks_with_secret_text.go
+-rw-r--r--  1 mashimohroki  staff     257 Apr 29 23:55 endian.go
+-rw-r--r--  1 mashimohroki  staff      73 Apr 29 21:08 file.go
+-rw-r--r--  1 mashimohroki  staff     166 Apr 29 21:05 file_input.go
+-rw-r--r--  1 mashimohroki  staff     322 May 14 13:36 io_multi_reader.go
+-rw-r--r--  1 mashimohroki  staff     210 Apr 29 22:39 io_reader.go
+-rw-r--r--  1 mashimohroki  staff     342 May 14 13:57 io_tee_reader.go
+-rw-r--r--  1 mashimohroki  staff     310 Apr 29 21:30 read_network_connection.go
+-rw-r--r--  1 mashimohroki  staff     345 Apr 29 23:50 read_response.go
+-rw-r--r--  1 mashimohroki  staff     215 Apr 29 23:27 section_reader.go
+-rw-r--r--  1 mashimohroki  staff     350 Apr 29 12:25 stdin.go

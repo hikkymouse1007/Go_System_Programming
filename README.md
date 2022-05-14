@@ -7,6 +7,10 @@ https://www.lambdanote.com/products/go
 - Zenn のメモ
   - https://zenn.dev/mohira/scraps/c0aca378ac9fa7
   - https://zenn.dev/mohira/scraps/c0aca378ac9fa7
+- その他良さげなもの
+  - https://zenn.dev/hsaki/books/golang-io-package/viewer/file
+  - https://zenn.dev/hsaki?tab=books
+  - https://golang.hateblo.jp/entry/2018/11/09/163000
 
 サンプルコード
 
@@ -239,3 +243,13 @@ https://rainbow-engine.com/little-endian-big-endian/
 
 ![スクリーンショット 2022-05-02 0 56 21](https://user-images.githubusercontent.com/54907440/166153977-daca9d14-6516-49a8-9e00-0791964f4c3b.png)
 ![スクリーンショット 2022-05-02 0 56 28](https://user-images.githubusercontent.com/54907440/166153978-06e34678-2dd6-4856-9fe6-9a344f330013.png)
+
+## tee コマンド補足
+
+https://atmarkit.itmedia.co.jp/ait/articles/1611/16/news022.html
+
+```
+ind /bin /usr/bin -type f | tee cmdlist | less
+
+（findコマンドの結果をファイル「cmdlist」に保存し、さらにlessコマンドで閲覧する）
+```
