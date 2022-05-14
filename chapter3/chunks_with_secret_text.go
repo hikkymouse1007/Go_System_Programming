@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"hash/crc32"
 	"io"
+	"net/http"
 	"os"
 )
 
@@ -64,16 +65,23 @@ func textChunk(text string) io.Reader {
 }
 
 func main() {
+	err := download()
+	if err != nil {
+		panic(err)
+	}
+
 	file, err := os.Open("Lenna.png")
 	if err != nil {
 		panic(err)
 	}
 	defer file.Close()
-	newFile, err := os.Open("Lenna.png")
+
+	newFile, err := os.Create("Lenna2.png")
 	if err != nil {
 		panic(err)
 	}
 	defer newFile.Close()
+
 	chunks := readChunks(file)
 	io.WriteString(newFile, "\x89PNG\r\n\x1a\n")
 	io.Copy(newFile, chunks[0])
@@ -81,6 +89,8 @@ func main() {
 	for _, chunk := range chunks[1:] {
 		io.Copy(newFile, chunk)
 	}
+
+	chunks = readChunks(newFile)
 	for _, chunk := range chunks {
 		dumpChunk(chunk)
 	}
@@ -88,4 +98,21 @@ func main() {
 	// chunk 'sRGB' (1 bytes)
 	// chunk 'IDAT' (473761 bytes)
 	// chunk 'IEND' (0 bytes)
+}
+
+func download() error {
+	resp, err := http.Get("https://upload.wikimedia.org/wikipedia/en/7/7d/Lenna_%28test_image%29.png")
+	if err != nil {
+		return err
+	}
+	defer resp.Body.Close()
+
+	out, err := os.Create("Lenna.png")
+	if err != nil {
+		return err
+	}
+	defer out.Close()
+
+	_, err = io.Copy(out, resp.Body)
+	return err
 }
