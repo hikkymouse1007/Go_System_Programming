@@ -6,10 +6,13 @@ https://www.lambdanote.com/products/go
   - https://ascii.jp/serialarticles/1235262/
 - Zenn のメモ
   - https://zenn.dev/mohira/scraps/c0aca378ac9fa7
-  - https://zenn.dev/mohira/scraps/c0aca378ac9fa7
+  - https://zenn.dev/mohira/scraps/ea040641f2f122
 - その他良さげなもの
+  Go から学ぶ I/O
   - https://zenn.dev/hsaki/books/golang-io-package/viewer/file
+    著者のその他の著書
   - https://zenn.dev/hsaki?tab=books
+    Go 言語(golang) ファイルの読み書き、作成、存在確認、一行ずつ処理、コピー など
   - https://golang.hateblo.jp/entry/2018/11/09/163000
 
 サンプルコード
