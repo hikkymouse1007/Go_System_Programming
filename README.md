@@ -19,6 +19,10 @@ https://www.lambdanote.com/products/go
 
 - https://github.com/mikutas/go-system-programming
 
+## Go by Example
+
+https://gobyexample.com/
+
 ## デバッガのセットアップ
 
 https://qiita.com/gs1068/items/1d89d4a9bed070782298
@@ -256,3 +260,18 @@ ind /bin /usr/bin -type f | tee cmdlist | less
 
 （findコマンドの結果をファイル「cmdlist」に保存し、さらにlessコマンドで閲覧する）
 ```
+
+## Go routine & channel
+
+並行実行と並列実行の違い
+https://zenn.dev/hsaki/books/golang-concurrency/viewer/term
+![スクリーンショット 2022-05-21 15 00 54](https://user-images.githubusercontent.com/54907440/169638147-b00bf9b3-f1a7-4591-b476-f20d57d35a0c.png)
+
+goroutine とチャネル
+https://qiita.com/taigamikami/items/fc798cdd6a4eaf9a7d5e
+
+チャネルは、並行実行される goroutine 間を接続するパイプ(トンネル)のイメージ。
+つまり、並行実行している関数から値を受信する。(ある goroutine から別の goroutine へ値を渡す。)
+![スクリーンショット 2022-05-21 15 00 54](https://user-images.githubusercontent.com/54907440/169638377-2e23edd7-32d7-4eeb-8571-fb634f31fff8.png)
+
+> バッファが詰まるとチャネルへの送信をブロックする。バッファが空のときは、チャネルの受信をブロックする。
