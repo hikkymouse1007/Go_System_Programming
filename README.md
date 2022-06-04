@@ -2,6 +2,11 @@
 
 https://www.lambdanote.com/products/go
 
+## Go By Example
+
+https://gobyexample.com/
+https://oohira.github.io/gobyexample-jp/
+
 - 解答つきの連載について
   - https://ascii.jp/serialarticles/1235262/
 - Zenn のメモ
@@ -275,3 +280,76 @@ https://qiita.com/taigamikami/items/fc798cdd6a4eaf9a7d5e
 ![スクリーンショット 2022-05-21 15 00 54](https://user-images.githubusercontent.com/54907440/169638377-2e23edd7-32d7-4eeb-8571-fb634f31fff8.png)
 
 > バッファが詰まるとチャネルへの送信をブロックする。バッファが空のときは、チャネルの受信をブロックする。
+
+バッファつきチャネルについて
+https://free-engineer.life/golang-buffer-channel/
+
+```
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func main() {
+	ch := make(chan int, 3)
+	go func() {
+		defer close(ch)
+		for i := 0; i < 5; i++ {
+			ch <- i
+			fmt.Printf("sent %d\n", i)
+		}
+	}()
+	time.Sleep(3 * time.Second) // 出力をわかりやすくすため、スリープ
+	for v := range ch {
+		fmt.Printf("received value: %d\n", v)
+		time.Sleep(1 * time.Second) // 出力をわかりやすくすため、スリープ
+	}
+}
+
+```
+
+0. バッファサイズ 3 のチャネルを作る。
+1. [0, 1, 2] の 3 つの値を貯める。(buffer: 3 なので) for は i = 2 で処理がブロックされる(値が入らないから)
+
+```
+[] <- 0, 1, 2
+↓
+[0, 1, 2]
+```
+
+2. 3 秒まつ
+3. range により次の処理が実行開始
+4. range によって v = 0 を受け取る
+5. バッファに空きが 1 できたので go func で処理を再開(i = 3 から), 3 を追加して満杯になる、処理をブロック
+6. v は channel の range から次の値を受け取る(v = 1)
+7. バッファに空きが 1 できたので go func で処理を再開(i = 4 から), 4 を追加して満杯になるが処理が終わったのでクローズ
+8. 溜まったバッファサイズ 3 の、 2,3,4 を全て v が受け取ってフィニッシュ
+
+```
+  <- 0 [1, 2]
+ [1, 2] <- 3 (i = 3)
+  <- 1 [2, 3]
+[2, 3] <- 4 (i = 4)
+[2, 3, 4]
+ <- 2, 3, 4 []
+```
+
+```
+sent 0
+sent 1
+sent 2             // ← ここでチャネルは一杯。チャネルが一杯になるまでは、受信操作が実行されなくても送信できる
+received value: 0  // ← 1つ受信した（取り出した）ので、チャネルに空きができる
+sent 3             // ← チャネルに空きができたので、送信。そして、また一杯になる
+received value: 1  // ← 1つ受信した（取り出した）ので、チャネルに空きができる
+sent 4             // ← チャネルに空きができたので、送信
+received value: 2
+received value: 3
+received value: 4
+```
+
+## message passing
+
+https://qiita.com/awakia/items/f8afa070c96d1c9a04c9
+https://stackoverflow.com/questions/1853284/whats-the-difference-between-the-message-passing-and-shared-memory-concurrency
